@@ -6,7 +6,7 @@ const nock = require('nock')
 
 describe('Star Wars Tests', () => {
     beforeEach(() => {
-        const response = { name: 'R2-D2',
+        const response = {results:[{ name: 'R2-D2',
             height: '96',
             mass: '32',
             hair_color: 'n/a',
@@ -18,7 +18,7 @@ describe('Star Wars Tests', () => {
             created: '2014-12-10T15:11:50.376000Z',
             edited: '2014-12-20T21:17:50.311000Z',
             url: 'https://swapi.co/api/people/3/' 
-        }
+        }]}
 
         nock('https://swapi.co/api/people')
             .get('/?search=r2-d2&format=json')
