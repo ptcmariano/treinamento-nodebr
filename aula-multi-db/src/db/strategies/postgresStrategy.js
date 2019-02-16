@@ -57,8 +57,10 @@ class PostgresStrategy extends IDb {
     );
     this.defineModel();
   }
-  create(item) {
-    return this._heroes.create(item, {raw:true});
+  async create(item) {
+    // create do _heroes chamado do sequelize
+    const {dataValues} = await this._heroes.create(item, {raw:true})
+    return dataValues;
   }
 }
 
