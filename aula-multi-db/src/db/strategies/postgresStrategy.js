@@ -1,3 +1,6 @@
+var pg = require('pg');
+delete pg.native;
+
 const IDb = require('./base/interfaceDb');
 const Sequelize = require('sequelize')
 class PostgresStrategy extends IDb {
@@ -61,6 +64,9 @@ class PostgresStrategy extends IDb {
     // create do _heroes chamado do sequelize
     const {dataValues} = await this._heroes.create(item, {raw:true})
     return dataValues;
+  }
+  async read(item={}) {
+    return await this._heroes.findAll({where:item}, {raw:true})
   }
 }
 

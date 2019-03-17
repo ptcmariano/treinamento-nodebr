@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -w *.test.js"
+    "test": "mocha src/tests/*.js",
+    "test:watch": "mocha -w src/tests/*.js"
   },
   "author": "erickwendel",
   "license": "ISC",

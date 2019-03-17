@@ -21,4 +21,10 @@ describe('Postgres Strategy', async function(){
         delete result.id
         assert.deepStrictEqual(result, MOCK_HEROI_CADASTRAR)
     })
+
+    it('listar', async function(){
+        const [result] = await context.read({nome:MOCK_HEROI_CADASTRAR.nome})
+        delete result.dataValues.id // delete to combine com mock
+        assert.deepStrictEqual(result.dataValues, MOCK_HEROI_CADASTRAR)
+    })
 })
