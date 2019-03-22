@@ -41,4 +41,10 @@ describe('Postgres Strategy', async function(){
         const [result] = await context.update(registroAntigo.id, registroAtualizar)
         assert.deepStrictEqual(result, 1)
     })
+
+    it('remover por id', async function(){
+        const [primeiroItem] = await context.read({})
+        const result = await context.delete(primeiroItem.id)
+        assert.deepStrictEqual(result, 1)
+    })
 })

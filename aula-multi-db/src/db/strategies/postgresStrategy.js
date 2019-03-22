@@ -71,6 +71,10 @@ class PostgresStrategy extends IDb {
   async update(id,item={}) {
     return this._heroes.update(item, {where:{id:id}})
   }
+  async delete(id) {
+    let query = id ? {id} : {}
+    return this._heroes.destroy({where:query})
+  }
 }
 
 module.exports = PostgresStrategy;
