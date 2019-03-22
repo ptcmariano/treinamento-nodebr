@@ -68,6 +68,9 @@ class PostgresStrategy extends IDb {
   async read(item={}) {
     return await this._heroes.findAll({where:item}, {raw:true})
   }
+  async update(id,item={}) {
+    return this._heroes.update(item, {where:{id:id}})
+  }
 }
 
 module.exports = PostgresStrategy;

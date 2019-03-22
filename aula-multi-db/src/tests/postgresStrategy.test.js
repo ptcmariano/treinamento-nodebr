@@ -8,6 +8,10 @@ const MOCK_HEROI_CADASTRAR = {
     nome: 'Mulher Maravilha',
     poder: 'Invisibilidade'
 }
+const MOCK_HEROI_ATUALIZAR = {
+    nome: 'Butcher',
+    poder: 'Machado'
+}
 
 describe('Postgres Strategy', async function(){
     this.timeout('10s')
@@ -26,5 +30,15 @@ describe('Postgres Strategy', async function(){
         const [result] = await context.read({nome:MOCK_HEROI_CADASTRAR.nome})
         delete result.dataValues.id // delete to combine com mock
         assert.deepStrictEqual(result.dataValues, MOCK_HEROI_CADASTRAR)
+    })
+
+    it('atualizar', async function(){
+        const [registroAntigo] = await context.read({nome:MOCK_HEROI_CADASTRAR.nome})
+        const registroAtualizar = {
+            ...MOCK_HEROI_CADASTRAR,
+            nome: MOCK_HEROI_ATUALIZAR.nome
+        }
+        const [result] = await context.update(registroAntigo.id, registroAtualizar)
+        assert.deepStrictEqual(result, 1)
     })
 })
