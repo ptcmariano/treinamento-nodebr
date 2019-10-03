@@ -41,4 +41,6 @@ docker run \
 docker exec -it mongodb \
     mongo --host localhost -u admin -p senhaadmin --authenticationDatabase admin \
     --eval "db.getSiblingDB('herois').createUser({user: 'paulotiago', pwd: 'minhasenhasecreta', roles: [{role: 'readWrite', db: 'herois'}]})"
+
+#docker run -it --rm -v $(pwd):/home/app -w /home/app --link mongodb node:12 node src/mongooseExample.js
 ```
