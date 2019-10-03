@@ -17,7 +17,7 @@ class IDb {
   delete(id) {
     throw new NotImplementedException();
   }
-  isConnected(id) {
+  isConnected() {
     throw new NotImplementedException();
   }
 }
