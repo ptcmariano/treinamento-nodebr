@@ -23,4 +23,4 @@ async function main() {
     console.log(`servidor rodando na porta ${PORT_SERVER}`)
     return app
 }
-main()
+module.exports = main()
