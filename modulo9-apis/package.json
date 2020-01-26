@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon api.js",
-    "test": "mocha tests/*.test.js"
+    "test": "mocha --reporter=list tests/*.test.js"
   },
   "author": "erickwendel",
   "license": "ISC",
