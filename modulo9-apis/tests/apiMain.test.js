@@ -58,6 +58,23 @@ describe('Suite de teste da API Heroes', function(){
         const dados = JSON.parse(result.payload)
         assert.deepStrictEqual(dados[0].nome,heroi.nome)
     })
+    it('listar herois - erro de limit incorreto', async () => {
+        const limiteDeResultado = 'aeeeo'
+        const errorResult = {
+            "statusCode":400,
+            "error":"Bad Request",
+            "message":"child \"limit\" fails because [\"limit\" must be a number]",
+            "validation":{
+                "source":"query",
+                "keys":["limit"]
+            }
+        }
+        const result = await app.inject({
+            method: 'GET',
+            url: `/herois?limit=${limiteDeResultado}`
+        })
+        assert.deepStrictEqual(result.payload,JSON.stringify(errorResult))
+    })
 
     it('api criar heroi', async () => {
         let novoHeroi = {"nome":"Batman","poder":"dinheiro"}
