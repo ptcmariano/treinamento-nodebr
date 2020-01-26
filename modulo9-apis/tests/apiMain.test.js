@@ -22,6 +22,19 @@ describe('Suite de teste da API Heroes', function(){
         assert.deepStrictEqual(statusCode, 200)
     })
     it('listar herois limitando resultado', async () => {
+        listaHerois = [
+            {"nome":"Batman","poder":"dinheiro"},
+            {"nome":"Superman","poder":"voar"},
+            {"nome":"Hulk","poder":"forca"},
+        ]
+        for (let index = 0; index < listaHerois.length; index++) {
+            const element = listaHerois[index];
+            const result = await app.inject({
+                payload: element,
+                method: 'POST',
+                url: '/herois'
+            })
+        }
         const limiteDeResultado = 3
         const result = await app.inject({
             method: 'GET',
