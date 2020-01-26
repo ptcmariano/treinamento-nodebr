@@ -1,4 +1,5 @@
 const BaseRoute = require('./baseRoute')
+const Joi = require('joi')
 
 class HeroRoutes extends BaseRoute {
     constructor(db){
@@ -10,6 +11,18 @@ class HeroRoutes extends BaseRoute {
         return {
             path: '/herois',
             method: 'GET',
+            config: {
+                validate: {
+                    failAction: (req, res, err) => {
+                        throw err
+                    },
+                    query: {
+                        skip: Joi.number().integer().default(0),
+                        limit: Joi.number().integer().default(10),
+                        nome: Joi.string().min(3).max(100)
+                    }
+                }
+            },
             handler: (request, headers) => {
                 try {
                     const { skip, limit, nome } = request.query
