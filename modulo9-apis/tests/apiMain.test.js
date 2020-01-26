@@ -43,6 +43,21 @@ describe('Suite de teste da API Heroes', function(){
         const dados = JSON.parse(result.payload)
         assert.deepStrictEqual(dados.length,limiteDeResultado)
     })
+    it('listar heroi filtrando resultado', async () => {
+        const idRandom = Math.round()
+        const heroi = {nome:'Homem-Aranha-'+idRandom,poder:'Teia'}
+        const post = await app.inject({
+            payload: heroi,
+            method: 'POST',
+            url: '/herois'
+        })
+        const result = await app.inject({
+            method: 'GET',
+            url: `/herois?nome=${heroi.nome}`
+        })
+        const dados = JSON.parse(result.payload)
+        assert.deepStrictEqual(dados[0].nome,heroi.nome)
+    })
 
     it('api criar heroi', async () => {
         let novoHeroi = {"nome":"Batman","poder":"dinheiro"}

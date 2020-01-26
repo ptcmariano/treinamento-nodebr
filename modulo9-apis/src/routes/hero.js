@@ -11,10 +11,11 @@ class HeroRoutes extends BaseRoute {
             path: '/herois',
             method: 'GET',
             handler: (request, headers) => {
-                const { skip, limit, nome } = 
-                    request.query
                 try {
-                    return this.db.read(nome, parseInt(skip), parseInt(limit))
+                    const { skip, limit, nome } = request.query
+                    let nomeFilter = {}
+                    if (nome) nomeFilter.nome = nome
+                    return this.db.read(nomeFilter, parseInt(skip), parseInt(limit))
                 } catch (error) {
                     console.log('DEU RUIM',error)
                     return 'Erro na busca de herois'
