@@ -6,12 +6,23 @@ class HeroRoutes extends BaseRoute {
         this.db = db
     }
 
-    list(){
+    list() {
         return {
             path: '/herois',
             method: 'GET',
             handler: (request, headers) => {
                 return this.db.read()
+            }
+        }
+    }
+
+    create() {
+        return {
+            path: '/herois',
+            method: 'POST',
+            handler: (request, headers) => {
+                let item = request.payload
+                return this.db.create(item)
             }
         }
     }
