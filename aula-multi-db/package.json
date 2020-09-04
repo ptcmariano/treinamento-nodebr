@@ -16,6 +16,6 @@
     "mongoose": "^5.7.3",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.44.3"
+    "sequelize": "^5.15.1"
   }
 }
